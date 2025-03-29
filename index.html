@@ -4,173 +4,288 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMAA Trivia Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-body {
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
-
-header {
-    margin-bottom: 30px;
-}
-
-.logo {
-    margin-bottom: 15px;
-}
-
-h1 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.screen {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.hidden {
-    display: none;
-}
-
-.btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    margin-top: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.logo {
-            margin-bottom: 15px;
-            max-width: 100%;
-            height: auto;
-            width: 300px; /* Set a default width */
+        :root {
+            --primary-color: #3498db;
+            --primary-dark: #2980b9;
+            --secondary-color: #2c3e50;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --light-gray: #ecf0f1;
+            --medium-gray: #bdc3c7;
+            --dark-gray: #95a5a6;
+            --white: #ffffff;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
-.btn:hover {
-    background-color: #2980b9;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-.options {
-    margin-top: 20px;
-}
+        body {
+            background-color: #f8f9fa;
+            color: var(--secondary-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        }
 
-.option-btn {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    background-color: #ecf0f1;
-    border: 1px solid #bdc3c7;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: left;
-}
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-.option-btn:hover {
-    background-color: #d6eaf8;
-    border-color: #3498db;
-}
+        header {
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease;
+        }
 
-.option-btn.selected {
-    background-color: #3498db;
-    color: white;
-    border-color: #3498db;
-}
+        .logo {
+            margin-bottom: 20px;
+            max-width: 100%;
+            height: auto;
+            width: 280px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
 
-.option-btn.correct {
-    background-color: #2ecc71;
-    color: white;
-    border-color: #2ecc71;
-}
+        h1 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
 
-.option-btn.incorrect {
-    background-color: #e74c3c;
-    color: white;
-    border-color: #e74c3c;
-}
+        p.subtitle {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
 
-.progress-container {
-    width: 100%;
-    background-color: #ecf0f1;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
+        .screen {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            animation: slideUp 0.5s ease;
+        }
 
-.progress-bar {
-    height: 10px;
-    background-color: #3498db;
-    border-radius: 5px;
-    width: 0%;
-    transition: width 0.3s;
-}
+        .hidden {
+            display: none;
+        }
 
-#result-message {
-    margin: 20px 0;
-    font-size: 18px;
-}
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 30px;
+            margin-top: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-.social-links {
-    margin-top: 30px;
-}
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+        }
 
-.social-links a {
-    display: inline-block;
-    margin-top: 10px;
-    color: #3498db;
-    text-decoration: none;
-}
+        .btn:active {
+            transform: translateY(0);
+        }
 
-.social-links i {
-    margin-right: 5px;
-}
+        .options {
+            margin-top: 25px;
+        }
 
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .screen {
-        padding: 20px;
-    }
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            background-color: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            font-size: 16px;
+            color: var(--secondary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
 
-    .logo {
-         width: 200px; /* Smaller width for mobile devices */
-    }
-}
+        .option-btn:hover {
+            background-color: #f0f8ff;
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .option-btn.selected {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .option-btn.correct {
+            background-color: var(--success-color);
+            color: var(--white);
+            border-color: var(--success-color);
+        }
+
+        .option-btn.incorrect {
+            background-color: var(--error-color);
+            color: var(--white);
+            border-color: var(--error-color);
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            margin-bottom: 25px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        #question {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            line-height: 1.4;
+        }
+
+        #result-message {
+            margin: 25px 0;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .score-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+
+        .score-display span {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .social-links p {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            margin: 0 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: 6px;
+        }
+
+        .social-links a:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .social-links i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .screen {
+                padding: 20px;
+            }
+
+            .logo {
+                width: 220px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            #question {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 15px;
+            }
+
+            .option-btn {
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
             <img src="images/WhatsApp_Image_2024-09-22_at_11.55.40_AM-removebg-preview.png" alt="IMAA Logo" class="logo">
             <h1>IMAA Trivia Challenge</h1>
-            <p>Test your knowledge about IMAA products and culture!</p>
+            <p class="subtitle">Test your knowledge about IMAA products and culture!</p>
         </header>
 
         <div id="start-screen" class="screen">
@@ -191,192 +306,196 @@ h1 {
         </div>
 
         <div id="result-screen" class="screen hidden">
-            <h2>Your Score: <span id="score">0</span>/<span id="total-questions">0</span></h2>
+            <h2>Your Score</h2>
+            <div class="score-display">
+                <span id="score">0</span>/<span id="total-questions">0</span>
+            </div>
             <p id="result-message"></p>
             <button id="restart-btn" class="btn">Play Again</button>
             <div class="social-links">
-                <p>Follow us for more:</p>
-                <a href="https://instagram.com/imaa.company" target="_blank"><i class="fab fa-instagram"></i> @imaa.company</a>
+                <p>Follow us for more updates</p>
+                <a href="https://instagram.com/imaa.company" target="_blank">
+                    <i class="fab fa-instagram"></i> @imaa.company
+                </a>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const startScreen = document.getElementById('start-screen');
-    const gameScreen = document.getElementById('game-screen');
-    const resultScreen = document.getElementById('result-screen');
-    const startBtn = document.getElementById('start-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const restartBtn = document.getElementById('restart-btn');
-    const questionElement = document.getElementById('question');
-    const optionsContainer = document.getElementById('options');
-    const progressBar = document.getElementById('progress-bar');
-    const scoreElement = document.getElementById('score');
-    const totalQuestionsElement = document.getElementById('total-questions');
-    const resultMessage = document.getElementById('result-message');
-    
-    // Game variables
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let selectedOption = null;
-    
-    // Sample questions - replace with actual questions about IMAA
-    const questions = [
-        {
-            question: "What does IMAA stand for?",
-            options: [
-                "Ibrahim, Mohammad, Ahmad, Akram",
-                "International Media Arts Association",
-                "Innovative Modern Art Agency",
-                "Integrated Marketing and Advertising"
-            ],
-            correctAnswer: 0
-        },
-        {
-            question: "Which of these is IMAA's main product?",
-            options: [
-                "Mobile Applications",
-                "Web-based Applications",
-                "Desktop Software",
-                "Hardware Solutions"
-            ],
-            correctAnswer: 1
-        },
-        {
-            question: "When was IMAA founded?",
-            options: [
-                "2022",
-                "2023",
-                "2024",
-                "2025"
-            ],
-            correctAnswer: 2
-        },
-        {
-            question: "What is IMAA's primary focus?",
-            options: [
-                "Web, Mobile & Desktop Applications",
-                "Digital Marketing",
-                "Graphic Design",
-                "Content Creation"
-            ],
-            correctAnswer: 0
-        },
-        {
-            question: "How does IMAA operate?",
-            options: [
-                "From a physical office",
-                "Remote work environment",
-                "Hybrid model",
-                "Multiple office locations"
-            ],
-            correctAnswer: 1
-        }
-    ];
-    
-    // Initialize the game
-    function initGame() {
-        currentQuestionIndex = 0;
-        score = 0;
-        showQuestion();
-        startScreen.classList.add('hidden');
-        gameScreen.classList.remove('hidden');
-        resultScreen.classList.add('hidden');
-        updateProgressBar();
-    }
-    
-    // Display current question
-    function showQuestion() {
-        const question = questions[currentQuestionIndex];
-        questionElement.textContent = question.question;
-        
-        // Clear previous options
-        optionsContainer.innerHTML = '';
-        
-        // Add new options
-        question.options.forEach((option, index) => {
-            const button = document.createElement('button');
-            button.classList.add('option-btn');
-            button.textContent = option;
-            button.addEventListener('click', () => selectOption(index));
-            optionsContainer.appendChild(button);
+            // DOM Elements
+            const startScreen = document.getElementById('start-screen');
+            const gameScreen = document.getElementById('game-screen');
+            const resultScreen = document.getElementById('result-screen');
+            const startBtn = document.getElementById('start-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const restartBtn = document.getElementById('restart-btn');
+            const questionElement = document.getElementById('question');
+            const optionsContainer = document.getElementById('options');
+            const progressBar = document.getElementById('progress-bar');
+            const scoreElement = document.getElementById('score');
+            const totalQuestionsElement = document.getElementById('total-questions');
+            const resultMessage = document.getElementById('result-message');
+            
+            // Game variables
+            let currentQuestionIndex = 0;
+            let score = 0;
+            let selectedOption = null;
+            
+            // Questions about IMAA
+            const questions = [
+                {
+                    question: "What does IMAA stand for?",
+                    options: [
+                        "Ibrahim, Mohammad, Ahmad, Akram",
+                        "International Media Arts Association",
+                        "Innovative Modern Art Agency",
+                        "Integrated Marketing and Advertising"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which of these is IMAA's main product?",
+                    options: [
+                        "Mobile Applications",
+                        "Web-based Applications",
+                        "Desktop Software",
+                        "Hardware Solutions"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "When was IMAA founded?",
+                    options: [
+                        "2022",
+                        "2023",
+                        "2024",
+                        "2025"
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    question: "What is IMAA's primary focus?",
+                    options: [
+                        "Web, Mobile & Desktop Applications",
+                        "Digital Marketing",
+                        "Graphic Design",
+                        "Content Creation"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How does IMAA operate?",
+                    options: [
+                        "From a physical office",
+                        "Remote work environment",
+                        "Hybrid model",
+                        "Multiple office locations"
+                    ],
+                    correctAnswer: 1
+                }
+            ];
+            
+            // Initialize the game
+            function initGame() {
+                currentQuestionIndex = 0;
+                score = 0;
+                showQuestion();
+                startScreen.classList.add('hidden');
+                gameScreen.classList.remove('hidden');
+                resultScreen.classList.add('hidden');
+                updateProgressBar();
+            }
+            
+            // Display current question
+            function showQuestion() {
+                const question = questions[currentQuestionIndex];
+                questionElement.textContent = question.question;
+                
+                // Clear previous options
+                optionsContainer.innerHTML = '';
+                
+                // Add new options
+                question.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.classList.add('option-btn');
+                    button.textContent = option;
+                    button.addEventListener('click', () => selectOption(index));
+                    optionsContainer.appendChild(button);
+                });
+                
+                // Reset UI for new question
+                nextBtn.classList.add('hidden');
+                selectedOption = null;
+            }
+            
+            // Handle option selection
+            function selectOption(index) {
+                if (selectedOption !== null) return; // Prevent changing answer
+                
+                selectedOption = index;
+                const options = document.querySelectorAll('.option-btn');
+                const correctIndex = questions[currentQuestionIndex].correctAnswer;
+                
+                // Mark selected option
+                options[index].classList.add('selected');
+                
+                // Show correct answer
+                options[correctIndex].classList.add('correct');
+                
+                // If wrong, mark incorrect
+                if (index !== correctIndex) {
+                    options[index].classList.add('incorrect');
+                } else {
+                    score++;
+                }
+                
+                // Show next button
+                nextBtn.classList.remove('hidden');
+            }
+            
+            // Move to next question or end game
+            function nextQuestion() {
+                currentQuestionIndex++;
+                
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion();
+                    updateProgressBar();
+                } else {
+                    endGame();
+                }
+            }
+            
+            // Update progress bar
+            function updateProgressBar() {
+                const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // End game and show results
+            function endGame() {
+                gameScreen.classList.add('hidden');
+                resultScreen.classList.remove('hidden');
+                
+                scoreElement.textContent = score;
+                totalQuestionsElement.textContent = questions.length;
+                
+                // Custom message based on score
+                const percentage = (score / questions.length) * 100;
+                if (percentage >= 80) {
+                    resultMessage.textContent = "Excellent! You're a true IMAA expert! 🎉";
+                } else if (percentage >= 50) {
+                    resultMessage.textContent = "Good job! You know quite a bit about IMAA. 👍";
+                } else {
+                    resultMessage.textContent = "Nice try! Follow us to learn more about IMAA! 💡";
+                }
+            }
+            
+            // Event listeners
+            startBtn.addEventListener('click', initGame);
+            nextBtn.addEventListener('click', nextQuestion);
+            restartBtn.addEventListener('click', initGame);
         });
-        
-        // Reset UI for new question
-        nextBtn.classList.add('hidden');
-        selectedOption = null;
-    }
-    
-    // Handle option selection
-    function selectOption(index) {
-        if (selectedOption !== null) return; // Prevent changing answer
-        
-        selectedOption = index;
-        const options = document.querySelectorAll('.option-btn');
-        const correctIndex = questions[currentQuestionIndex].correctAnswer;
-        
-        // Mark selected option
-        options[index].classList.add('selected');
-        
-        // Show correct answer
-        options[correctIndex].classList.add('correct');
-        
-        // If wrong, mark incorrect
-        if (index !== correctIndex) {
-            options[index].classList.add('incorrect');
-        } else {
-            score++;
-        }
-        
-        // Show next button
-        nextBtn.classList.remove('hidden');
-    }
-    
-    // Move to next question or end game
-    function nextQuestion() {
-        currentQuestionIndex++;
-        
-        if (currentQuestionIndex < questions.length) {
-            showQuestion();
-            updateProgressBar();
-        } else {
-            endGame();
-        }
-    }
-    
-    // Update progress bar
-    function updateProgressBar() {
-        const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-        progressBar.style.width = `${progress}%`;
-    }
-    
-    // End game and show results
-    function endGame() {
-        gameScreen.classList.add('hidden');
-        resultScreen.classList.remove('hidden');
-        
-        scoreElement.textContent = score;
-        totalQuestionsElement.textContent = questions.length;
-        
-        // Custom message based on score
-        const percentage = (score / questions.length) * 100;
-        if (percentage >= 80) {
-            resultMessage.textContent = "Excellent! You're a true IMAA fan!";
-        } else if (percentage >= 50) {
-            resultMessage.textContent = "Good job! You know quite a bit about IMAA.";
-        } else {
-            resultMessage.textContent = "Nice try! Follow @imaa.company to learn more!";
-        }
-    }
-    
-    // Event listeners
-    startBtn.addEventListener('click', initGame);
-    nextBtn.addEventListener('click', nextQuestion);
-    restartBtn.addEventListener('click', initGame);
-});
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
